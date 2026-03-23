@@ -13,32 +13,10 @@
     {
       "id": "step-1-overview",
       "title": "Welcome to Ubicloud",
-      "description": "Ubicloud is an open-source cloud platform built with Ruby. It provides VMs, managed PostgreSQL, Kubernetes clusters, load balancers, firewalls, GitHub runners, and AI inference. The highlighted files are the main application entry points — let's explore the full codebase from above.",
+      "description": "Ubicloud is an open-source cloud platform built with Ruby. It provides VMs, managed PostgreSQL, Kubernetes clusters, load balancers, firewalls, GitHub runners, and AI inference. Take a moment to explore the full codebase from above before we dive in.",
       "estimatedTime": 60,
       "focusDirectory": "",
-      "colorMode": "fileTypes",
-      "highlightLayers": [
-        {
-          "id": "entry-points",
-          "name": "Application Entry Points",
-          "color": "#ef4444",
-          "items": [
-            { "path": "clover.rb", "type": "file" },
-            { "path": "config.ru", "type": "file" },
-            { "path": "model.rb", "type": "file" },
-            { "path": "db.rb", "type": "file" }
-          ],
-          "opacity": 0.8,
-          "renderStrategy": "fill"
-        }
-      ],
-      "interactiveActions": [
-        {
-          "type": "click-file",
-          "description": "Click the highlighted file to see the main application entry point",
-          "target": "clover.rb"
-        }
-      ]
+      "colorMode": "fileTypes"
     },
     {
       "id": "step-2-models",
@@ -297,48 +275,10 @@
     {
       "id": "step-9-full-picture",
       "title": "The Full Picture",
-      "description": "You've now seen the key layers of Ubicloud: routes handle requests, models define the domain, background jobs manage infrastructure lifecycle, and views render the UI. The three highlighted layers — request handling, domain and data, and infrastructure jobs — show how the platform manages bare-metal servers, VMs, networking, databases, Kubernetes, and AI inference as open-source Ruby.",
+      "description": "You've now seen the key layers of Ubicloud: routes handle requests, models define the domain, background jobs manage infrastructure lifecycle, and views render the UI. The platform manages bare-metal servers, VMs, networking, databases, Kubernetes, and AI inference — all as open-source Ruby.",
       "estimatedTime": 60,
       "focusDirectory": "",
       "colorMode": "fileTypes",
-      "highlightLayers": [
-        {
-          "id": "request-layer",
-          "name": "Request Handling",
-          "color": "#3b82f6",
-          "items": [
-            { "path": "routes", "type": "directory" },
-            { "path": "helpers", "type": "directory" },
-            { "path": "serializers", "type": "directory" }
-          ],
-          "opacity": 0.5,
-          "renderStrategy": "border"
-        },
-        {
-          "id": "domain-layer",
-          "name": "Domain & Data",
-          "color": "#10b981",
-          "items": [
-            { "path": "model", "type": "directory" },
-            { "path": "lib", "type": "directory" },
-            { "path": "migrate", "type": "directory" }
-          ],
-          "opacity": 0.5,
-          "renderStrategy": "border"
-        },
-        {
-          "id": "infra-layer",
-          "name": "Infrastructure Jobs",
-          "color": "#f59e0b",
-          "items": [
-            { "path": "prog", "type": "directory" },
-            { "path": "scheduling", "type": "directory" },
-            { "path": "rhizome", "type": "directory" }
-          ],
-          "opacity": 0.5,
-          "renderStrategy": "border"
-        }
-      ],
       "resources": [
         {
           "title": "Ubicloud GitHub Repository",

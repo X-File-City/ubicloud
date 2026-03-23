@@ -1,0 +1,366 @@
+{
+  "id": "ubicloud-onboarding",
+  "title": "Ubicloud Platform Tour",
+  "description": "A guided walkthrough of the Ubicloud open-source cloud platform — understand its architecture, key components, and how infrastructure is managed",
+  "version": "1.0.0",
+  "audience": "New Developers",
+  "prerequisites": [
+    "Basic Ruby knowledge",
+    "Familiarity with web frameworks (Roda/Sinatra/Rails)",
+    "Understanding of cloud infrastructure concepts"
+  ],
+  "steps": [
+    {
+      "id": "step-1-overview",
+      "title": "Welcome to Ubicloud",
+      "description": "Ubicloud is an open-source cloud platform built with Ruby. It provides VMs, managed PostgreSQL, Kubernetes clusters, load balancers, firewalls, GitHub runners, and AI inference. The highlighted files are the main application entry points — let's explore the full codebase from above.",
+      "estimatedTime": 60,
+      "focusDirectory": "",
+      "colorMode": "fileTypes",
+      "highlightLayers": [
+        {
+          "id": "entry-points",
+          "name": "Application Entry Points",
+          "color": "#ef4444",
+          "items": [
+            { "path": "clover.rb", "type": "file" },
+            { "path": "config.ru", "type": "file" },
+            { "path": "model.rb", "type": "file" },
+            { "path": "db.rb", "type": "file" }
+          ],
+          "opacity": 0.8,
+          "renderStrategy": "fill"
+        }
+      ],
+      "interactiveActions": [
+        {
+          "type": "click-file",
+          "description": "Click the highlighted file to see the main application entry point",
+          "target": "clover.rb"
+        }
+      ]
+    },
+    {
+      "id": "step-2-models",
+      "title": "Domain Models",
+      "description": "Over a hundred domain models represent every cloud resource Ubicloud manages. Subdirectories organize them by domain — VMs, PostgreSQL databases, Kubernetes clusters, GitHub runners, AI inference, billing, and more. Each model uses custom plugins for column encryption, unique identifiers, and access control.",
+      "estimatedTime": 120,
+      "focusDirectory": "model",
+      "colorMode": "fileTypes",
+      "highlightLayers": [
+        {
+          "id": "infra-models",
+          "name": "Infrastructure Models",
+          "color": "#3b82f6",
+          "items": [
+            { "path": "model/vm.rb", "type": "file" },
+            { "path": "model/vm_host.rb", "type": "file" },
+            { "path": "model/private_subnet.rb", "type": "file" },
+            { "path": "model/firewall.rb", "type": "file" },
+            { "path": "model/load_balancer.rb", "type": "file" }
+          ],
+          "opacity": 0.7,
+          "renderStrategy": "fill"
+        },
+        {
+          "id": "service-models",
+          "name": "Managed Service Models",
+          "color": "#10b981",
+          "items": [
+            { "path": "model/postgres", "type": "directory" },
+            { "path": "model/kubernetes", "type": "directory" },
+            { "path": "model/ai", "type": "directory" },
+            { "path": "model/github", "type": "directory" }
+          ],
+          "opacity": 0.6,
+          "renderStrategy": "border"
+        }
+      ],
+      "interactiveActions": [
+        {
+          "type": "hover-directory",
+          "description": "Hover over the PostgreSQL subdirectory to see the managed database models",
+          "target": "model/postgres"
+        }
+      ]
+    },
+    {
+      "id": "step-3-routes",
+      "title": "Routes & API",
+      "description": "Ubicloud uses a modular routing pattern. Top-level routes handle accounts, projects, and webhooks, while nested routes handle resource operations for VMs, PostgreSQL, Kubernetes, and more. An OpenAPI specification drives request and response validation across the entire API surface.",
+      "estimatedTime": 120,
+      "focusDirectory": "routes",
+      "colorMode": "fileTypes",
+      "highlightLayers": [
+        {
+          "id": "top-routes",
+          "name": "Top-Level Routes",
+          "color": "#f59e0b",
+          "items": [
+            { "path": "routes/account.rb", "type": "file" },
+            { "path": "routes/project.rb", "type": "file" },
+            { "path": "routes/github.rb", "type": "file" }
+          ],
+          "opacity": 0.7,
+          "renderStrategy": "fill"
+        },
+        {
+          "id": "resource-routes",
+          "name": "Resource Routes",
+          "color": "#8b5cf6",
+          "items": [
+            { "path": "routes/project", "type": "directory" }
+          ],
+          "opacity": 0.5,
+          "renderStrategy": "border"
+        }
+      ],
+      "interactiveActions": [
+        {
+          "type": "click-file",
+          "description": "Click the project route to see how routing delegates to sub-routes",
+          "target": "routes/project.rb"
+        }
+      ]
+    },
+    {
+      "id": "step-4-background-jobs",
+      "title": "Background Jobs",
+      "description": "This is the engine room — over a hundred background jobs that handle infrastructure provisioning, maintenance, and teardown. Jobs follow a state machine pattern driven by the scheduling system. This is where VMs get bootstrapped, Kubernetes clusters are created, PostgreSQL databases are initialized, and GitHub runners are installed.",
+      "estimatedTime": 120,
+      "focusDirectory": "prog",
+      "colorMode": "fileTypes",
+      "highlightLayers": [
+        {
+          "id": "vm-jobs",
+          "name": "VM Provisioning",
+          "color": "#3b82f6",
+          "items": [
+            { "path": "prog/vm", "type": "directory" }
+          ],
+          "opacity": 0.6,
+          "renderStrategy": "border"
+        },
+        {
+          "id": "k8s-jobs",
+          "name": "Kubernetes Jobs",
+          "color": "#10b981",
+          "items": [
+            { "path": "prog/kubernetes", "type": "directory" }
+          ],
+          "opacity": 0.6,
+          "renderStrategy": "border"
+        },
+        {
+          "id": "pg-jobs",
+          "name": "PostgreSQL Jobs",
+          "color": "#f59e0b",
+          "items": [
+            { "path": "prog/postgres", "type": "directory" }
+          ],
+          "opacity": 0.6,
+          "renderStrategy": "border"
+        }
+      ],
+      "interactiveActions": [
+        {
+          "type": "hover-directory",
+          "description": "Hover over the VM provisioning area to see the lifecycle jobs",
+          "target": "prog/vm"
+        }
+      ]
+    },
+    {
+      "id": "step-5-web-ui",
+      "title": "Views & Frontend",
+      "description": "The web interface uses server-rendered templates styled with Tailwind CSS. Views are organized by resource type — VMs, PostgreSQL, Kubernetes, networking — with reusable components shared across pages. A separate helpers layer provides route-level utilities for both the API and web UI, handling serialization, pagination, and request formatting.",
+      "estimatedTime": 90,
+      "focusDirectory": "views",
+      "colorMode": "fileTypes",
+      "highlightLayers": [
+        {
+          "id": "resource-views",
+          "name": "Resource UIs",
+          "color": "#ec4899",
+          "items": [
+            { "path": "views/vm", "type": "directory" },
+            { "path": "views/postgres", "type": "directory" },
+            { "path": "views/networking", "type": "directory" }
+          ],
+          "opacity": 0.6,
+          "renderStrategy": "border"
+        },
+        {
+          "id": "shared-views",
+          "name": "Shared Components",
+          "color": "#06b6d4",
+          "items": [
+            { "path": "views/components", "type": "directory" },
+            { "path": "views/layouts", "type": "directory" }
+          ],
+          "opacity": 0.6,
+          "renderStrategy": "border"
+        }
+      ],
+      "interactiveActions": [
+        {
+          "type": "hover-directory",
+          "description": "Hover over the shared components area to see the reusable UI building blocks",
+          "target": "views/components"
+        }
+      ]
+    },
+    {
+      "id": "step-6-libs-and-services",
+      "title": "Libraries & Services",
+      "description": "Over fifty utility and service files live here: authorization logic, audit logging, health monitoring, invoice generation, metrics collection, and integrations with external services like GitHub, MinIO, and Victoria Metrics. A companion serializers layer provides API response formatters ensuring consistent JSON output across all endpoints.",
+      "estimatedTime": 90,
+      "focusDirectory": "lib",
+      "colorMode": "fileTypes",
+      "highlightLayers": [
+        {
+          "id": "core-libs",
+          "name": "Core Libraries",
+          "color": "#f97316",
+          "items": [
+            { "path": "lib/authorization.rb", "type": "file" },
+            { "path": "lib/audit_log.rb", "type": "file" },
+            { "path": "lib/validation.rb", "type": "file" }
+          ],
+          "opacity": 0.7,
+          "renderStrategy": "fill"
+        }
+      ],
+      "interactiveActions": [
+        {
+          "type": "click-file",
+          "description": "Click the authorization module to see how access control is implemented",
+          "target": "lib/authorization.rb"
+        }
+      ]
+    },
+    {
+      "id": "step-7-auth",
+      "title": "Authentication & Security",
+      "description": "Authentication is handled by Rodauth with support for passwords, WebAuthn, MFA, and OAuth via GitHub and Google. The platform uses a custom UBID identifier system for resource IDs — type-prefixed, globally unique identifiers. Column-level encryption protects sensitive data, and API keys provide programmatic access.",
+      "estimatedTime": 90,
+      "focusDirectory": "rodauth",
+      "colorMode": "fileTypes",
+      "highlightLayers": [
+        {
+          "id": "auth-system",
+          "name": "Auth Features",
+          "color": "#dc2626",
+          "items": [
+            { "path": "rodauth", "type": "directory" }
+          ],
+          "opacity": 0.5,
+          "renderStrategy": "border"
+        }
+      ],
+      "interactiveActions": [
+        {
+          "type": "click-file",
+          "description": "Click the UBID module to see the custom identifier implementation",
+          "target": "ubid.rb"
+        }
+      ]
+    },
+    {
+      "id": "step-8-testing",
+      "title": "Testing & Quality",
+      "description": "Over four hundred test files provide comprehensive coverage of models, routes, helpers, and serializers. The suite uses WebMock for HTTP stubbing, Capybara for end-to-end browser tests, and SimpleCov for coverage tracking. The test structure mirrors the source layout, making it easy to find the tests for any given module.",
+      "estimatedTime": 60,
+      "focusDirectory": "spec",
+      "colorMode": "fileTypes",
+      "highlightLayers": [
+        {
+          "id": "test-areas",
+          "name": "Key Test Directories",
+          "color": "#22c55e",
+          "items": [
+            { "path": "spec/model", "type": "directory" },
+            { "path": "spec/routes", "type": "directory" }
+          ],
+          "opacity": 0.5,
+          "renderStrategy": "border"
+        }
+      ],
+      "interactiveActions": [
+        {
+          "type": "hover-directory",
+          "description": "Hover over the model tests area to see the test files",
+          "target": "spec/model"
+        }
+      ]
+    },
+    {
+      "id": "step-9-full-picture",
+      "title": "The Full Picture",
+      "description": "You've now seen the key layers of Ubicloud: routes handle requests, models define the domain, background jobs manage infrastructure lifecycle, and views render the UI. The three highlighted layers — request handling, domain and data, and infrastructure jobs — show how the platform manages bare-metal servers, VMs, networking, databases, Kubernetes, and AI inference as open-source Ruby.",
+      "estimatedTime": 60,
+      "focusDirectory": "",
+      "colorMode": "fileTypes",
+      "highlightLayers": [
+        {
+          "id": "request-layer",
+          "name": "Request Handling",
+          "color": "#3b82f6",
+          "items": [
+            { "path": "routes", "type": "directory" },
+            { "path": "helpers", "type": "directory" },
+            { "path": "serializers", "type": "directory" }
+          ],
+          "opacity": 0.5,
+          "renderStrategy": "border"
+        },
+        {
+          "id": "domain-layer",
+          "name": "Domain & Data",
+          "color": "#10b981",
+          "items": [
+            { "path": "model", "type": "directory" },
+            { "path": "lib", "type": "directory" },
+            { "path": "migrate", "type": "directory" }
+          ],
+          "opacity": 0.5,
+          "renderStrategy": "border"
+        },
+        {
+          "id": "infra-layer",
+          "name": "Infrastructure Jobs",
+          "color": "#f59e0b",
+          "items": [
+            { "path": "prog", "type": "directory" },
+            { "path": "scheduling", "type": "directory" },
+            { "path": "rhizome", "type": "directory" }
+          ],
+          "opacity": 0.5,
+          "renderStrategy": "border"
+        }
+      ],
+      "resources": [
+        {
+          "title": "Ubicloud GitHub Repository",
+          "url": "https://github.com/ubicloud/ubicloud",
+          "type": "code"
+        },
+        {
+          "title": "Roda Web Framework",
+          "url": "https://roda.jeremyevans.net/",
+          "type": "documentation"
+        },
+        {
+          "title": "Sequel ORM",
+          "url": "https://sequel.jeremyevans.net/",
+          "type": "documentation"
+        }
+      ]
+    }
+  ],
+  "metadata": {
+    "author": "File City Tour Generator",
+    "createdAt": "2026-03-23",
+    "tags": ["onboarding", "architecture", "cloud-platform", "ruby"]
+  }
+}
